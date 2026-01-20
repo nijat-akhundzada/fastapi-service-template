@@ -1,6 +1,9 @@
-# {{SERVICE_NAME}}
+# FastAPI Service Template
 
-Backend service built using the **FastAPI Service Template**.
+A production-ready, opinionated **Python backend service template** built with
+FastAPI, async SQLAlchemy, clean architecture, and Unit of Work pattern.
+
+Designed for long-lived, maintainable systems and team collaboration.
 
 ---
 
@@ -9,15 +12,18 @@ Backend service built using the **FastAPI Service Template**.
 This service follows **clean layered architecture**:
 
 - `api/` — HTTP endpoints, request/response schemas, validation
-- `business/` — use-cases and domain rules
+- `business/` — use-cases and domain rules (business logic)
 - `data/` — database models, repositories, unit of work
 - `core/` — configuration, logging, errors, middleware
 
-### Rules
+### Architectural Rules
 
-- API layer must not access the database directly
-- Business layer must not import SQLAlchemy models
-- All database writes must go through Unit of Work
+- API layer must **not** access the database directly
+- Business layer must **not** import SQLAlchemy models
+- All database writes must go through **Unit of Work**
+- Database sessions must never be used in API routes
+
+These rules are enforced to keep the codebase maintainable and safe to refactor.
 
 ---
 
@@ -25,9 +31,11 @@ This service follows **clean layered architecture**:
 
 ### Requirements
 
-- Python 3.12
-- Docker (for infrastructure)
-- uv
+- Python **3.12**
+- Docker (for infrastructure such as Postgres, RabbitMQ, etc.)
+- `uv` package manager
+
+---
 
 ### Setup
 
@@ -46,7 +54,7 @@ Service runs at:
 http://127.0.0.1:8000
 ```
 
-Health check:
+Health check endpoint:
 
 ```
 GET /api/v1/health
@@ -56,24 +64,27 @@ GET /api/v1/health
 
 ## Adding a New Feature
 
-Follow this order strictly:
+Always follow this order:
 
-1. Define repository interface in `business/repositories.py`
-2. Implement repository in `data/repositories_sql/`
-3. Create use-case in `business/usecases/`
-4. Call use-case from API endpoint in `api/`
+1. Define a repository interface in `business/repositories.py`
+2. Implement the repository in `data/repositories_sql/`
+3. Create a use-case in `business/usecases/`
+4. Call the use-case from an API endpoint in `api/`
+
+Do **not** skip steps.
+Do **not** put business logic in API routes.
 
 ---
 
 ## Database Migrations
 
-Create migration:
+Create a migration:
 
 ```bash
 make revision m="add something"
 ```
 
-Apply migration:
+Apply migrations:
 
 ```bash
 make migrate
@@ -83,6 +94,8 @@ make migrate
 
 ## Tests
 
+Run all tests:
+
 ```bash
 make test
 ```
@@ -91,19 +104,19 @@ make test
 
 ## Common Mistakes
 
-* Business logic in API routes
-* Direct database access in API
-* Forgetting to commit Unit of Work
-* Returning raw exceptions
+* Putting business logic in API routes
+* Accessing the database directly from API layer
+* Forgetting to commit inside Unit of Work
+* Returning raw exceptions instead of structured errors
 
 ---
 
 ## Philosophy
 
-This service is designed to be:
+This template is intentionally designed to be:
 
-* Boring
-* Explicit
-* Predictable
+* **Boring**
+* **Explicit**
+* **Predictable**
 
-Correctness is more important than cleverness.
+Correctness, clarity, and maintainability are more important than cleverness.
