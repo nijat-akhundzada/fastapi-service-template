@@ -13,7 +13,7 @@ class ErrorCode(str, Enum):
 
 @dataclass(frozen=True)
 class AppError(Exception):
-    code: str
+    code: ErrorCode
     message: str
     details: dict | None = None
 

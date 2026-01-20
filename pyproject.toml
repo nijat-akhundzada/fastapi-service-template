@@ -1,7 +1,7 @@
 [project]
 name = "fastapi-service-template"
 version = "0.1.0"
-description = "Add your description here"
+description = "Production-ready FastAPI service template with async SQLAlchemy, clean architecture, and Unit of Work."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

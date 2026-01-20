@@ -4,21 +4,25 @@ SHELL := /bin/bash
 
 help:
 	@echo "Targets:"
-	@echo "  venv        - create .venv"
-	@echo "  install     - install deps (dev)"
-	@echo "  dev         - run fastapi in reload mode"
-	@echo "  test        - run tests"
-	@echo "  lint        - ruff check"
-	@echo "  fix         - ruff check and fix"
-	@echo "  fmt         - ruff format"
-	@echo "  revision m= - create alembic revision"
-	@echo "  migrate     - alembic upgrade head"
-	@echo "  downgrade   - alembic downgrade -1"
+	@echo "  venv        	- create .venv"
+	@echo "  install     	- install deps (dev)"
+	@echo "  install-prod	- install deps (dev)"
+	@echo "  dev         	- run fastapi in reload mode"
+	@echo "  test        	- run tests"
+	@echo "  lint        	- ruff check"
+	@echo "  fix         	- ruff check and fix"
+	@echo "  fmt         	- ruff format"
+	@echo "  revision m= 	- create alembic revision"
+	@echo "  migrate     	- alembic upgrade head"
+	@echo "  downgrade   	- alembic downgrade -1"
 
 venv:
 	uv venv
 
 install:
+	uv sync --group dev
+
+install-prod:
 	uv sync --no-dev
 
 dev:

@@ -41,9 +41,7 @@ jobs:
 
       - name: Install deps
         run: |
-          uv venv
-          source .venv/bin/activate
-          uv pip install -e ".[dev]"
+          uv sync --group dev
 
       - name: Lint
         run: |
