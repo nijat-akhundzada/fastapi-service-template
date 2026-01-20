@@ -2,9 +2,11 @@ import os
 import sys
 from pathlib import Path
 
+
 def replace_in_file(path: Path, old: str, new: str):
     text = path.read_text()
     path.write_text(text.replace(old, new))
+
 
 def main():
     if len(sys.argv) != 2:
@@ -46,6 +48,7 @@ def main():
     print("  make install")
     print("  make migrate")
     print("  make dev")
+
 
 if __name__ == "__main__":
     main()

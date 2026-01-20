@@ -1,5 +1,12 @@
 # FastAPI Service Template
 
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-red)
+![License](https://img.shields.io/badge/license-MIT-green)
+[![CI](https://github.com/nijat-akhundzada/fastapi-service-template/actions/workflows/ci.yml/badge.svg)](https://github.com/nijat-akhundzada/fastapi-service-template/actions/workflows/ci.yml)
+
+
 A production-ready, opinionated **Python backend service template** built with
 FastAPI, async SQLAlchemy, clean architecture, and Unit of Work pattern.
 

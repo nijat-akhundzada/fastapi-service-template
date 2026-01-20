@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
+
 class ErrorCode(str, Enum):
     VALIDATION_ERROR = "validation_error"
     NOT_FOUND = "not_found"
@@ -8,6 +9,7 @@ class ErrorCode(str, Enum):
     FORBIDDEN = "forbidden"
     CONFLICT = "conflict"
     INTERNAL_ERROR = "internal_error"
+
 
 @dataclass(frozen=True)
 class AppError(Exception):
