@@ -1,0 +1,63 @@
+[project]
+name = "fastapi-service-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.18.1",
+    "asyncpg>=0.31.0",
+    "fastapi>=0.128.0",
+    "pydantic-settings>=2.12.0",
+    "python-json-logger>=4.0.0",
+    "sqlalchemy>=2.0.45",
+    "uvicorn[standard]>=0.40.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.14.13",
+]
+
+# --- PyTest configuration ---
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+# --- Ruff configuration ---
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+
+# Enable common linting rules
+[tool.ruff.lint]
+extend-select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "B",   # bugbear (common bugs)
+    "I",   # import sorting
+]
+ignore = ["B008", "E501"]
+exclude = [
+    "**/.git",
+    "**/.ruff_cache",
+    "**/.venv",
+    "**/__pypackages__",
+    "*/migrations/*", 
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
