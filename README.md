@@ -3,8 +3,11 @@
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-red)
+![uv](https://img.shields.io/badge/uv-package_manager-blueviolet)
+![Ruff](https://img.shields.io/badge/code_style-ruff-black)
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![CI](https://github.com/nijat-akhundzada/fastapi-service-template/actions/workflows/ci.yml/badge.svg)](https://github.com/nijat-akhundzada/fastapi-service-template/actions/workflows/ci.yml)
+
 
 
 A production-ready, opinionated **Python backend service template** built with
@@ -33,6 +36,18 @@ This service follows **clean layered architecture**:
 These rules are enforced to keep the codebase maintainable and safe to refactor.
 
 ---
+
+## Tooling
+
+This template uses modern Python tooling:
+
+- **uv** — fast dependency management and virtual environments
+- **Ruff** — fast linting and formatting
+
+These tools are recommended but can be replaced if needed.
+
+---
+
 
 ## Local Development
 
