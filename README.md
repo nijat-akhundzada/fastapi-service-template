@@ -63,12 +63,10 @@ These tools are recommended but can be replaced if needed.
 
 ```bash
 cp .env.example .env
-make venv
-source .venv/bin/activate
 make install
 make migrate
 make dev
-````
+```
 
 Service runs at:
 
