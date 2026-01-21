@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: help venv install dev test lint fmt revision migrate downgrade
+.PHONY: help install dev test lint fmt check up down revision migrate downgrade
 
 help:
 	@echo "Targets:"
@@ -42,10 +42,10 @@ fmt:
 check: lint test
 
 up:
-	docker-compose up --build -d
+	docker compose up --build -d
 
 down:
-	docker-compose down
+	docker compose down
 
 revision:
 	@if [ -z "$(m)" ]; then echo "Usage: make revision m=\"message\""; exit 1; fi
