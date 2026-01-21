@@ -4,7 +4,6 @@ import pytest
 
 from app.api.dependencies import get_uow
 from app.business.uow import UnitOfWork
-from app.main import app
 
 
 class MockExampleRepo:
@@ -39,18 +38,20 @@ class MockUOW(UnitOfWork):
 
 
 @pytest.mark.asyncio
-async def test_create_example(client):
+async def test_create_example(app, client):
     mock_uow = MockUOW()
     app.dependency_overrides[get_uow] = lambda: mock_uow
 
-    response = await client.post("/api/v1/examples", json={"name": "test item"})
+    try:
+        response = await client.post("/api/v1/examples", json={"name": "test item"})
+        assert response.status_code == 200
 
-    assert response.status_code == 200
-    data = response.json()
-    assert "id" in data
+        data = response.json()
+        assert "id" in data
+        UUID(data["id"])  # validates UUID format
 
-    assert len(mock_uow.example.items) == 1
-    assert mock_uow.example.items[0]["name"] == "test item"
-    assert mock_uow.committed is True
-
-    app.dependency_overrides = {}
+        assert len(mock_uow.example.items) == 1
+        assert mock_uow.example.items[0]["name"] == "test item"
+        assert mock_uow.committed is True
+    finally:
+        app.dependency_overrides.clear()
